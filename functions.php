@@ -4,20 +4,16 @@ add_action("wp_ajax_nopriv_my_ajax_action", "my_ajax_handler");
 function my_ajax_handler() {
 
              $args = array(  
-                'post_type' => 'services',
+                'post_type' => 'post',
                 'post_status' => 'publish',
-                'posts_per_page' => 8, 
-                'orderby’ => 'title', 
-                'order’ => 'ASC', 
+                'posts_per_page' => 5, 
             );
 
             $loop = new WP_Query( $args ); 
 
-            while ( $loop->have_posts() ) : $loop->the_post(); 
-                print the_title(); 
-                the_excerpt(); 
-            endwhile;
-
+            while ( $loop->have_posts() ) : $loop->the_post(); ?>
+          <h3><?php the_title(); ?></h3>
+            <?php   endwhile;
         }
     }
     wp_die();
